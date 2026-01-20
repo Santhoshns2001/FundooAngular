@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-card class="login-card">
+
+    <div class="image-wrapper">
+      <img class="google-image" src="https://i0.wp.com/www.dafontfree.io/wp-content/uploads/2021/04/Google-new-logo.png"
+        alt="google" />
+    </div>
+
+    <h2 class="login-title">Login</h2>
+    <p class="text-google">Use your Google Account</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Email">
+
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+          Email is required
+        </mat-error>
+
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Password">
+
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+          Password is required
+        </mat-error>
+
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched">
+          Minimum 6 characters required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="forgot-password">
+        <a routerLink="/forgot-password">Forgot password?</a>
+      </div>
+
+      <div class="login-submit">
+        <!-- <a href="/Register">Create account</a> -->
+        <a routerLink="/Register" class="link">Create account</a>
+
+        <button class="login-btn" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </button>
+      </div>
+
+    </form>
+
+
+  </mat-card>
+</div>

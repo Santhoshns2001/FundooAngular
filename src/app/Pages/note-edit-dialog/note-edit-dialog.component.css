@@ -1,0 +1,81 @@
+/* REMOVE DEFAULT DIALOG STYLES */
+::ng-deep .keep-dialog-panel .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* MAIN CONTAINER */
+.keep-dialog {
+  width: 600px;
+  padding: 16px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+/* PIN */
+.pin-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.pin-btn mat-icon {
+  font-size: 20px;
+}
+
+/* TITLE */
+.keep-title {
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  background: transparent;
+}
+
+/* DESCRIPTION */
+.keep-desc {
+  border: none;
+  outline: none;
+  resize: none;
+  min-height: 90px;
+  font-size: 15px;
+  background: transparent;
+}
+
+/* ACTION BAR */
+.keep-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.actions-left {
+  display: flex;
+  gap: 18px;
+}
+
+
+
+.actions-left mat-icon {
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.actions-left mat-icon:hover {
+  opacity: 1;
+}
+
+/* CLOSE */
+.close-text {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}

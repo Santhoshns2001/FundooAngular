@@ -1,0 +1,110 @@
+.login-title {
+  text-align: center;
+  margin-top: -20px;
+  color: rgb(35, 28, 28);
+}
+
+.text-google{
+  margin-top: 15px;
+  color: rgb(105, 104, 104);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+background-color: #ddd9d9f4;
+}
+
+.login-card {
+  width: 500px;
+  height: 500px;
+  padding: 24px;
+  background-color: white;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.forgot-password {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+  
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #1eafe8;
+  font-size: 14px;
+  font-size: medium;
+}
+
+.login-submit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.login-submit a {
+  text-decoration: none;
+  color: #1eafe8;
+}
+
+.google-image {
+  width: 200px;
+  height: auto;
+  margin-top: -25px;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+
+.login-btn{
+  background-color: rgb(56, 73, 232);
+  color: white;
+  border-radius: 5px ;
+  height: 35px;
+  width: 100px;
+  border-color:rgb(56, 73, 232);
+}
+
+
+.success-snackbar {
+  background: #4caf50;
+  color: white;
+}
+
+.error-snackbar {
+  background: #f44336;
+  color: white;
+}
+
+
+.link {
+  color: #1a73e8;             
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:active {
+  color: #174ea6;
+}

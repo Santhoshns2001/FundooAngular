@@ -1,0 +1,102 @@
+
+    .nav-header{
+        height: 60px;
+        border: 1px  solid rgb(206, 200, 200);
+        width: 100%;
+        display: flex;
+        /* padding: 0%; */
+    }
+
+
+    .menu-button{
+        margin-top: -10px;
+        margin-left: 15px;
+    }
+
+
+    .nav-left-top
+    {
+        display: flex;
+        align-items: center;
+        width: 200px;
+        /* justify-content: space-between; */
+        margin-left: 10px;
+    }
+
+    .icon{
+        height: 53px;
+        display: flex;
+        justify-content: center;
+        margin-top: -1px;
+        margin-left: 10px;
+    }
+
+    .keep{
+        font-size: 22px;
+        color: rgb(109, 105, 105);
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+
+    .input_field {
+    width: 700px;
+    margin-left: 80px;
+    display: flex;
+    align-items: center;
+    height: 40px;                 
+    padding: 0 6px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid lightgray;
+    margin-top: 10px;
+    }
+
+    .input_field button.mat-icon-button {
+    width: 24px;
+    height: 30px;
+    padding: 0px;                  
+    }
+
+    .input_field mat-icon {
+    font-size: 18px;
+    line-height: 18px;
+    }
+
+    .input_field input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    padding: 0 6px;
+    }
+    .icon-img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    }
+
+
+    .corner_icons{
+    width: 150px;
+    /* border: 1px solid ; */
+    display:  flex;
+    align-items:  center;
+    margin-left: 270px;
+    /* color: gray; */
+    }
+
+    .corner-icons-2{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    }
+
+
+    mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 64px;
+  padding: 0 16px;
+}

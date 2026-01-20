@@ -1,0 +1,23 @@
+<app-top-nav (toggleSidenav)="toggleSidenav()"></app-top-nav>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- SIDE NAV -->
+  <mat-sidenav
+    mode="side"
+    [opened]="expanded"
+    class="sidenav"
+    [class.collapsed]="!expanded">
+
+    <app-side-nav [expanded]="expanded"></app-side-nav>
+  </mat-sidenav>
+
+  <!-- MAIN CONTENT -->
+  <mat-sidenav-content
+    [ngClass]="expanded ? 'sidenav-open' : 'sidenav-closed'">
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

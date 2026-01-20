@@ -1,0 +1,53 @@
+mat-nav-list {
+  padding-top: 35;
+}
+
+.nav-item {
+  height: 48px;
+  border-radius: 0 25px 25px 0;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item mat-icon {
+  margin-left: 16px;
+  margin-right: 24px;
+}
+
+/* .nav-item.active {
+  background-color: #feefc3;
+} */
+
+.nav-item.router-link-active {
+  background-color: #feefc3;
+}
+
+.nav-item.router-link-active mat-icon {
+  color: #000;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+
+
+.side-nav-list a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item {
+  height: 48px;
+  border-radius: 0 25px 25px 0;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background-color: #f1f3f4;
+}
+

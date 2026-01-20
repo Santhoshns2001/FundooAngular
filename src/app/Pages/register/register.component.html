@@ -1,0 +1,70 @@
+<div class="container">
+  <mat-card class="register-card">
+
+    <div class="register-layout">
+
+      <div class="form-section">
+
+        <img class="google-image"
+          src="https://i0.wp.com/www.dafontfree.io/wp-content/uploads/2021/04/Google-new-logo.png" alt="google" />
+
+        <h2 class="register-header">Create your Google Account</h2>
+
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+          <div class="name-fl">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput name="firstName" [(ngModel)]="registerMdl.FirstName" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput name="lastName" [(ngModel)]="registerMdl.LastName" required>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" [(ngModel)]="registerMdl.Email" required>
+          </mat-form-field>
+
+          <p class="register-emailtext">
+            You can use letters, numbers & periods
+          </p>
+
+          <div class="password">
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" name="password" [(ngModel)]="registerMdl.Password" required minlength="6">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Confirm</mat-label>
+              <input matInput type="password" name="confirmPassword" [(ngModel)]="registerMdl.ConfirmPassword" required>
+            </mat-form-field>
+          </div>
+
+          <p class="register-emailtext">
+            Use 8 or more characters with a mix of letters, numbers & symbols
+          </p>
+
+          <div class="end-buttons">
+            <!-- <a href="/Login">Login</a> -->
+             <a routerLink="/Login">Login</a>
+            <button class="next-btn" type="submit" [disabled]="registerForm.invalid">
+              Next
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="image-section">
+        <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="account">
+        <p>One account. All of Google working for you.</p>
+      </div>
+
+    </div>
+  </mat-card>
+</div>

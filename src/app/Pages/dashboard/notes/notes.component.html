@@ -1,0 +1,109 @@
+<!-- OVERLAY -->
+<div
+  class="overlay"
+  *ngIf="isExpanded"
+  (click)="closeNote()">
+</div>
+
+<div class="notes-wrapper">
+
+  <!-- COLLAPSED -->
+  <div
+    class="note-collapsed"
+    *ngIf="!isExpanded"
+    (click)="expandNote()">
+
+    <span class="placeholder">Take a note...</span>
+
+    <div class="icons">
+      <button class="icon-btn" tabindex="-1" (click)="$event.stopPropagation()">
+        <mat-icon>check_box</mat-icon>
+      </button>
+      <button class="icon-btn" tabindex="-1" (click)="$event.stopPropagation()">
+        <mat-icon>brush</mat-icon>
+      </button>
+      <button class="icon-btn" tabindex="-1" (click)="$event.stopPropagation()">
+        <mat-icon>image</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- EXPANDED -->
+  <div
+    class="note-expanded"
+    *ngIf="isExpanded"
+    [style.background]="note.color"
+    (click)="$event.stopPropagation()">
+
+    <!-- HEADER -->
+    <div class="note-header">
+      <input
+        class="title-input"
+        placeholder="Title"
+        [(ngModel)]="note.title" />
+
+      <button
+        class="icon-btn"
+        (click)="togglePin(); $event.stopPropagation()"
+        title="Pin">
+        <mat-icon [class.active]="note.isPinned">push_pin</mat-icon>
+      </button>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <textarea
+      class="description-input"
+      placeholder="Take a note..."
+      [(ngModel)]="note.description">
+    </textarea>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <div class="icons">
+
+        <!-- REMINDER -->
+        <input
+          type="datetime-local"
+          hidden
+          #reminderInput
+          (change)="setReminder($event)" />
+        <button class="icon-btn" (click)="reminderInput.click()">
+          <mat-icon>notifications</mat-icon>
+        </button>
+
+        <!-- COLOR -->
+        <button class="icon-btn" (click)="setColor('#fbbc04')">
+          <mat-icon>palette</mat-icon>
+        </button>
+
+        <!-- IMAGE -->
+        <input
+          type="file"
+          hidden
+          #fileInput
+          (change)="onImageSelect($event)" />
+        <button class="icon-btn" (click)="fileInput.click()">
+          <mat-icon>image</mat-icon>
+        </button>
+
+        <!-- ARCHIVE -->
+        <button class="icon-btn" (click)="toggleArchive()">
+          <mat-icon>archive</mat-icon>
+        </button>
+
+        <!-- MORE -->
+        <button class="icon-btn">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+
+      <button class="close-btn" (click)="closeNote()">
+        Close
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- NOTES LIST -->
+<app-notes-list></app-notes-list>

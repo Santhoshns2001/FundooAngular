@@ -1,0 +1,31 @@
+/* Container */
+.sidenav-container {
+  height: calc(100vh - 64px); /* top nav height */
+}
+
+/* Side nav */
+.sidenav {
+  width: 280px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+
+.sidenav.collapsed {
+  width: 72px;
+}
+
+/* Content area */
+mat-sidenav-content {
+  background-color: #f1f3f4;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* IMPORTANT: layout width control */
+.sidenav-open {
+  padding-left: 0;
+}
+
+.sidenav-closed {
+  padding-left: 0;
+}

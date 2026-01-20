@@ -1,0 +1,60 @@
+<div>
+    <nav class="nav-header">
+        <div class="nav-left-top">
+            <button mat-icon-button (click)="menuToggle.emit()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <img class="icon"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz1m95VHC8IohHRPhrs4zky6sqOez_ZeiHww&s"
+                alt="icon">
+            <p class="keep">Keep</p>
+        </div>
+        <div class="input_field">
+            <button mat-icon-button title="search">
+                <mat-icon>search</mat-icon>
+            </button>
+
+            <input placeholder="Search" (keyup)="search($event)">
+
+            <button mat-icon-button title="close">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="corner_icons">
+            <div>
+                <button mat-icon-button title="Refresh">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+            </div>
+
+            <div>
+                <button mat-icon-button title="List view">
+                    <mat-icon>view_list</mat-icon>
+                </button>
+            </div>
+
+            <div>
+                <button mat-icon-button title="Settings">
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="corner-icons-2">
+            <div>
+                <button mat-icon-button title="Google apps">
+                    <mat-icon>apps</mat-icon>
+                </button>
+            </div>
+
+            <div>
+                <button mat-icon-button title="Google Account">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+            </div>
+
+        </div>
+
+    </nav>
+</div>

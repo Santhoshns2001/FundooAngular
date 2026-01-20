@@ -1,0 +1,42 @@
+<div class="notes-grid">
+
+  <div
+    class="note-card"
+    *ngFor="let note of notes"
+    [style.background]="note.color || '#ffffff'"
+    (click)="openNote(note)">
+
+    <!-- PIN -->
+    <button
+      class="pin-btn"
+      (click)="$event.stopPropagation()">
+      <mat-icon>push_pin</mat-icon>
+    </button>
+
+    <!-- CONTENT -->
+    <div class="note-content">
+      <div class="note-title" *ngIf="note.title">
+        {{ note.title }}
+      </div>
+
+      <div class="note-description" *ngIf="note.description">
+        {{ note.description }}
+      </div>
+    </div>
+
+    <!-- ACTIONS (HOVER ONLY) -->
+    <div
+      class="note-actions"
+      (click)="$event.stopPropagation()">
+
+      <mat-icon>notifications</mat-icon>
+      <mat-icon>palette</mat-icon>
+      <mat-icon>image</mat-icon>
+      <mat-icon>archive</mat-icon>
+      <mat-icon>more_vert</mat-icon>
+
+    </div>
+
+  </div>
+
+</div>

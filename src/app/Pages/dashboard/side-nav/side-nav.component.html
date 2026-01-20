@@ -1,0 +1,61 @@
+<mat-nav-list class="side-nav-list">
+
+  <!-- NOTES -->
+  <a
+    mat-list-item
+    routerLink="/dashboard/notes"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="nav-item">
+
+    <mat-icon>lightbulb</mat-icon>
+    <span class="label" *ngIf="expanded">Notes</span>
+  </a>
+
+  <!-- REMINDERS -->
+  <a
+    mat-list-item
+    routerLink="/dashboard/reminders"
+    routerLinkActive="active"
+    class="nav-item">
+
+    <mat-icon>notifications</mat-icon>
+    <span class="label" *ngIf="expanded">Reminders</span>
+  </a>
+
+  <!-- DIVIDER -->
+  <!-- <mat-divider></mat-divider> -->
+
+  <!-- EDIT LABELS (NO ROUTE FOR NOW) -->
+  <a
+    mat-list-item
+    class="nav-item"
+    (click)="openEditLabels()">
+
+    <mat-icon>edit</mat-icon>
+    <span class="label" *ngIf="expanded">Edit labels</span>
+  </a>
+
+  <!-- ARCHIVE -->
+  <a
+    mat-list-item
+    routerLink="/dashboard/archive"
+    routerLinkActive="active"
+    class="nav-item">
+
+    <mat-icon>archive</mat-icon>
+    <span class="label" *ngIf="expanded">Archive</span>
+  </a>
+
+  <!-- TRASH -->
+  <a
+    mat-list-item
+    routerLink="/dashboard/trash"
+    routerLinkActive="active"
+    class="nav-item">
+
+    <mat-icon>delete</mat-icon>
+    <span class="label" *ngIf="expanded">Trash</span>
+  </a>
+
+</mat-nav-list>
