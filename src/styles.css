@@ -31,3 +31,18 @@ html, body {
   margin: 0;
   overflow: hidden;
 }
+
+/* ================================
+   GOOGLE KEEP DIALOG – FINAL FIX
+================================ */
+
+/* OUTER MATERIAL DIALOG */
+.cdk-overlay-pane.keep-dialog-panel .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 8px !important;   /* ✅ control curve here */
+  overflow: hidden !important;     /* ✅ remove scroll */
+  background: transparent !important;
+}
+
+
+

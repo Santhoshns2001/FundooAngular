@@ -1,17 +1,12 @@
-/* REMOVE DEFAULT DIALOG STYLES */
-::ng-deep .keep-dialog-panel .mat-dialog-container {
-  padding: 0 !important;
-  border-radius: 8px;
-  overflow: hidden;
-}
 
-/* MAIN CONTAINER */
+/* MAIN */
 .keep-dialog {
-  width: 600px;
-  padding: 16px 16px 8px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  /* border-radius: 3px; */
 }
 
 /* PIN */
@@ -19,63 +14,65 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: transparent;
   border: none;
+  background: transparent;
   cursor: pointer;
-}
-
-.pin-btn mat-icon {
-  font-size: 20px;
 }
 
 /* TITLE */
 .keep-title {
+  width: 100%;
   border: none;
   outline: none;
   font-size: 18px;
   font-weight: 500;
-  margin-bottom: 8px;
   background: transparent;
+  margin-bottom: 8px;
 }
 
 /* DESCRIPTION */
 .keep-desc {
+  width: 100%;
   border: none;
   outline: none;
   resize: none;
-  min-height: 90px;
   font-size: 15px;
   background: transparent;
+
+  /* 🔥 CRITICAL FIX */
+  min-height: unset;
+  max-height: unset;
+  overflow: hidden;
 }
 
-/* ACTION BAR */
-.keep-actions {
+/* FOOTER */
+.keep-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
 }
 
-.actions-left {
+.footer-icons {
   display: flex;
-  gap: 18px;
+  gap: 16px;
 }
 
-
-
-.actions-left mat-icon {
-  font-size: 20px;
+.footer-icons mat-icon {
   cursor: pointer;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
-.actions-left mat-icon:hover {
+.footer-icons mat-icon:hover {
   opacity: 1;
 }
 
 /* CLOSE */
-.close-text {
+.close-btn {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+}
+.close-btn:hover {
+  text-decoration: none;
 }

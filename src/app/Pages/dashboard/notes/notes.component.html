@@ -1,30 +1,17 @@
 <!-- OVERLAY -->
-<div
-  class="overlay"
-  *ngIf="isExpanded"
-  (click)="closeNote()">
-</div>
+<div class="overlay" *ngIf="isExpanded" (click)="closeNote()"></div>
 
 <div class="notes-wrapper">
-
   <!-- COLLAPSED -->
   <div
     class="note-collapsed"
     *ngIf="!isExpanded"
     (click)="expandNote()">
-
     <span class="placeholder">Take a note...</span>
-
-    <div class="icons">
-      <button class="icon-btn" tabindex="-1" (click)="$event.stopPropagation()">
-        <mat-icon>check_box</mat-icon>
-      </button>
-      <button class="icon-btn" tabindex="-1" (click)="$event.stopPropagation()">
-        <mat-icon>brush</mat-icon>
-      </button>
-      <button class="icon-btn" tabindex="-1" (click)="$event.stopPropagation()">
-        <mat-icon>image</mat-icon>
-      </button>
+    <div class="collapsed-icons">
+      <mat-icon>check_box</mat-icon>
+      <mat-icon>brush</mat-icon>
+      <mat-icon>image</mat-icon>
     </div>
   </div>
 
@@ -32,7 +19,7 @@
   <div
     class="note-expanded"
     *ngIf="isExpanded"
-    [style.background]="note.color"
+    [style.backgroundColor]="colorMap[note.colour || 'White']"
     (click)="$event.stopPropagation()">
 
     <!-- HEADER -->
@@ -42,68 +29,77 @@
         placeholder="Title"
         [(ngModel)]="note.title" />
 
-      <button
-        class="icon-btn"
-        (click)="togglePin(); $event.stopPropagation()"
-        title="Pin">
-        <mat-icon [class.active]="note.isPinned">push_pin</mat-icon>
+      <button class="icon-btn" (click)="togglePin()">
+        <mat-icon>push_pin</mat-icon>
       </button>
     </div>
 
-    <!-- DESCRIPTION -->
+    <!-- BODY -->
     <textarea
       class="description-input"
       placeholder="Take a note..."
-      [(ngModel)]="note.description">
-    </textarea>
+      [(ngModel)]="note.description"></textarea>
 
-    <!-- ACTIONS -->
+    <!-- ACTION BAR -->
     <div class="actions">
       <div class="icons">
-
-        <!-- REMINDER -->
-        <input
-          type="datetime-local"
-          hidden
-          #reminderInput
-          (change)="setReminder($event)" />
-        <button class="icon-btn" (click)="reminderInput.click()">
+        <button class="icon-btn">
           <mat-icon>notifications</mat-icon>
         </button>
 
-        <!-- COLOR -->
-        <button class="icon-btn" (click)="setColor('#fbbc04')">
-          <mat-icon>palette</mat-icon>
+        <button class="icon-btn">
+          <mat-icon>person_add</mat-icon>
         </button>
 
-        <!-- IMAGE -->
-        <input
-          type="file"
-          hidden
-          #fileInput
-          (change)="onImageSelect($event)" />
-        <button class="icon-btn" (click)="fileInput.click()">
+        <!-- COLOR PICKER -->
+        <div class="color-wrapper">
+          <button class="icon-btn" (click)="toggleColorPicker()">
+            <mat-icon>palette</mat-icon>
+          </button>
+
+          <div class="color-palette" *ngIf="showColors">
+            <span
+              *ngFor="let c of colors"
+              class="color-circle"
+              [style.backgroundColor]="c"
+              (click)="setColor(c)">
+            </span>
+          </div>
+        </div>
+
+        <button class="icon-btn">
           <mat-icon>image</mat-icon>
         </button>
 
-        <!-- ARCHIVE -->
         <button class="icon-btn" (click)="toggleArchive()">
           <mat-icon>archive</mat-icon>
         </button>
 
         <!-- MORE -->
-        <button class="icon-btn">
-          <mat-icon>more_vert</mat-icon>
+        <div class="more-wrapper">
+          <button class="icon-btn" (click)="toggleMore()">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <div class="more-menu" *ngIf="showMore">
+            <div class="menu-item">Add label</div>
+            <div class="menu-item">Add drawing</div>
+            <div class="menu-item">Show checkboxes</div>
+          </div>
+        </div>
+
+        <button class="icon-btn" [disabled]="!canUndo">
+          <mat-icon>undo</mat-icon>
+        </button>
+
+        <button class="icon-btn" [disabled]="!canRedo">
+          <mat-icon>redo</mat-icon>
         </button>
       </div>
 
-      <button class="close-btn" (click)="closeNote()">
-        Close
-      </button>
+      <button class="close-btn" (click)="closeNote()">Close</button>
     </div>
-
   </div>
 </div>
 
-<!-- NOTES LIST -->
 <app-notes-list></app-notes-list>
