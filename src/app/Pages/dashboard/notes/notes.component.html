@@ -2,11 +2,9 @@
 <div class="overlay" *ngIf="isExpanded" (click)="closeNote()"></div>
 
 <div class="notes-wrapper">
+
   <!-- COLLAPSED -->
-  <div
-    class="note-collapsed"
-    *ngIf="!isExpanded"
-    (click)="expandNote()">
+  <div class="note-collapsed" *ngIf="!isExpanded" (click)="expandNote()">
     <span class="placeholder">Take a note...</span>
     <div class="collapsed-icons">
       <mat-icon>check_box</mat-icon>
@@ -16,18 +14,13 @@
   </div>
 
   <!-- EXPANDED -->
-  <div
-    class="note-expanded"
-    *ngIf="isExpanded"
-    [style.backgroundColor]="colorMap[note.colour || 'White']"
+  <div class="note-expanded" *ngIf="isExpanded"
+    [ngStyle]="{ 'background-color': note.colour ? colorMap[note.colour] : '#ffffff' }"
     (click)="$event.stopPropagation()">
 
     <!-- HEADER -->
     <div class="note-header">
-      <input
-        class="title-input"
-        placeholder="Title"
-        [(ngModel)]="note.title" />
+      <input class="title-input" placeholder="Title" [(ngModel)]="note.title" />
 
       <button class="icon-btn" (click)="togglePin()">
         <mat-icon>push_pin</mat-icon>
@@ -35,21 +28,57 @@
     </div>
 
     <!-- BODY -->
-    <textarea
-      class="description-input"
-      placeholder="Take a note..."
-      [(ngModel)]="note.description"></textarea>
+    <textarea class="description-input" placeholder="Take a note..." [(ngModel)]="note.description"
+      (input)="onChange()"></textarea>
+
+    <!-- LABEL CHIPS (selected labels display) -->
+    <div class="label-chips" *ngIf="note.labels?.length">
+      <span class="label-chip" *ngFor="let label of note.labels">
+        {{ label }}
+      </span>
+    </div>
+
 
     <!-- ACTION BAR -->
     <div class="actions">
       <div class="icons">
+
         <button class="icon-btn">
           <mat-icon>notifications</mat-icon>
         </button>
 
-        <button class="icon-btn">
+        <!-- ADD COLLABORATOR -->
+        <button class="icon-btn" (click)="openCollaboratorPopup($event)">
           <mat-icon>person_add</mat-icon>
         </button>
+
+        <!-- COLLABORATOR POPUP -->
+        <div class="collab-popup" *ngIf="showCollaboratorPopup" (click)="$event.stopPropagation()">
+
+          <div class="collab-title">Collaborators</div>
+
+          <!-- OWNER -->
+          <div class="collab-owner">
+            <mat-icon>account_circle</mat-icon>
+            <div>
+              <div class="name">Owner</div>
+              <div class="email">{{ userEmail }}</div>
+            </div>
+          </div>
+
+          <!-- EMAIL INPUT -->
+          <input type="email" placeholder="Person or email to share with" [(ngModel)]="collaboratorEmail" />
+
+          <!-- ACTIONS -->
+          <div class="collab-actions">
+            <button class="btn" (click)="closeCollaboratorPopup()">Cancel</button>
+            <button class="btn primary" [disabled]="!collaboratorEmail" (click)="saveCollaborator()">
+              Save
+            </button>
+          </div>
+        </div>
+
+
 
         <!-- COLOR PICKER -->
         <div class="color-wrapper">
@@ -58,12 +87,8 @@
           </button>
 
           <div class="color-palette" *ngIf="showColors">
-            <span
-              *ngFor="let c of colors"
-              class="color-circle"
-              [style.backgroundColor]="c"
-              (click)="setColor(c)">
-            </span>
+            <span *ngFor="let c of colors" class="color-circle" [style.backgroundColor]="colorMap[c]"
+              (click)="setColor(c)"></span>
           </div>
         </div>
 
@@ -82,17 +107,55 @@
           </button>
 
           <div class="more-menu" *ngIf="showMore">
-            <div class="menu-item">Add label</div>
-            <div class="menu-item">Add drawing</div>
-            <div class="menu-item">Show checkboxes</div>
+            <div class="menu-item" (click)="openLabelPopup($event)">
+              Add label
+            </div>
+          </div>
+
+          <!-- LABEL POPUP -->
+          <div class="label-popup" *ngIf="showLabelPopup" (click)="$event.stopPropagation()">
+
+            <div class="label-title">Label note</div>
+
+            <div class="label-input-wrapper">
+              <!-- <input type="text" placeholder="Enter label name" [(ngModel)]="labelSearch" (input)="onLabelSearch()" /> -->
+              <input type="text" placeholder="Enter label name" [(ngModel)]="labelSearch" (input)="onLabelSearch()" />
+
+              <mat-icon class="search-icon">search</mat-icon>
+            </div>
+
+            <!-- LABEL LIST -->
+            <!-- LABEL LIST -->
+            <div class="label-list">
+
+              <!-- Existing labels -->
+              <div class="label-item" *ngFor="let label of filteredLabels" (click)="toggleLabel(label.name)">
+                <mat-icon>
+                  {{ note.labels?.includes(label.name)
+                  ? 'check_box'
+                  : 'check_box_outline_blank' }}
+                </mat-icon>
+                <span>{{ label.name }}</span>
+              </div>
+
+              <!-- CREATE NEW LABEL -->
+              <div class="label-item create-label" *ngIf="labelSearch && !labelExists(labelSearch)"
+                (click)="addLabel()">
+                <mat-icon>add</mat-icon>
+                <span>Create "{{ labelSearch }}"</span>
+              </div>
+
+            </div>
+
+
           </div>
         </div>
 
-        <button class="icon-btn" [disabled]="!canUndo">
+        <button class="icon-btn" [disabled]="!canUndo" (click)="undo()">
           <mat-icon>undo</mat-icon>
         </button>
 
-        <button class="icon-btn" [disabled]="!canRedo">
+        <button class="icon-btn" [disabled]="!canRedo" (click)="redo()">
           <mat-icon>redo</mat-icon>
         </button>
       </div>

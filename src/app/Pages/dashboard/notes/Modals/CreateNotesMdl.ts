@@ -9,3 +9,9 @@ export class Note {
   isArchived?: boolean;
   labels: string[] = [];
 }
+
+
+export interface Label {
+  id: number;
+  name: string;
+}

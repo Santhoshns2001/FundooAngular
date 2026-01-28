@@ -1,15 +1,10 @@
 <div class="notes-grid">
 
-  <div
-    class="note-card"
-    *ngFor="let note of notes"
-    [style.background]="colorMap[note.colour || 'White']"
+  <div class="note-card" *ngFor="let note of notes" [style.background]="colorMap[note.colour || 'White']"
     (click)="openNote(note)">
 
     <!-- PIN -->
-    <button
-      class="pin-btn"
-      (click)="$event.stopPropagation()">
+    <button class="pin-btn" (click)="$event.stopPropagation()">
       <mat-icon>push_pin</mat-icon>
     </button>
 
@@ -22,23 +17,82 @@
       <div class="note-description" *ngIf="note.description">
         {{ note.description }}
       </div>
+
+      <div class="label-chips" *ngIf="note.labels?.length">
+        <span class="label-chip" *ngFor="let lbl of note.labels">
+          {{ lbl }}
+        </span>
+      </div>
     </div>
 
-    <!-- ACTIONS (HOVER ONLY) -->
-    <div
-      class="note-actions"
-      (click)="$event.stopPropagation()">
+    <!-- ACTIONS -->
+    <div class="note-actions" (click)="$event.stopPropagation()">
 
       <mat-icon>palette</mat-icon>
       <mat-icon>notifications</mat-icon>
-       <mat-icon>person_add</mat-icon>
+      <mat-icon>person_add</mat-icon>
       <mat-icon>image</mat-icon>
       <mat-icon>archive</mat-icon>
-      <mat-icon>more_vert</mat-icon>
-     
+
+      <!-- MORE -->
+      <div class="more-wrapper">
+        <mat-icon (click)="toggleMenu(note, $event)">
+          more_vert
+        </mat-icon>
+
+        <!-- MORE MENU -->
+        <div class="more-menu" *ngIf="activeNoteId === note.noteId">
+          <div class="menu-item">Delete note</div>
+          <div class="menu-item" (click)="openLabelPopup(note, $event)">
+            Add label
+          </div>
+        </div>
+
+        <div class="label-popup" *ngIf="showLabelPopup && activeNoteId === note.noteId">
+
+          <div class="label-title">Label note</div>
+
+          <!-- SEARCH / CREATE INPUT -->
+          <div class="label-input-wrapper">
+            <input type="text" placeholder="Enter label name" [(ngModel)]="labelName" (input)="onLabelSearch()"
+              (keyup.enter)="addLabel()" />
+            <mat-icon>search</mat-icon>
+          </div>
+
+          <div class="label-list">
+
+            <!-- EXISTING LABELS -->
+            <div class="label-item" *ngFor="let label of filteredLabels" (click)="toggleLabel(note, label)">
+
+              <mat-icon>
+                {{ note.labels?.includes(label.name)
+                ? 'check_box'
+                : 'check_box_outline_blank' }}
+              </mat-icon>
+
+              <span>{{ label.name }}</span>
+            </div>
+
+            <!-- CREATE NEW LABEL -->
+            <div class="label-item"
+              *ngIf="labelName && !labelExists(labelName)"
+
+              (click)="addLabel()">
+
+              <mat-icon>add</mat-icon>
+              <span>Create “{{ labelName }}”</span>
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div *ngIf="!labelName && filteredLabels.length === 0" class="menu-item">
+              No labels found
+            </div>
+
+          </div>
+        </div>
+
+      </div>
 
     </div>
-
   </div>
-
 </div>
